@@ -25,6 +25,15 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#ifdef _MSC_VER
+#   ifndef snprintf
+#       define snprintf _snprintf
+#   endif
+#   ifndef strncasecmp
+#       define strncasecmp _strnicmp
+#   endif
+#endif
+
 /* Size: Total bytes allocated to *buf
  * Length: String length, excluding optional NULL terminator.
  * Increment: Allocation increments when resizing the string buffer.
