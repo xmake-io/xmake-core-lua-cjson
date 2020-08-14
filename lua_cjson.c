@@ -60,6 +60,15 @@
 #define CJSON_EXPORT    extern
 #endif
 
+#if defined(_MSC_VER) && (_MSC_VER < 1800)
+#ifndef isnan
+#   define isnan _isnan
+#endif
+#ifndef isinf 
+#   define isinf(x) (!isnan(x) && isnan((x) - (x)))
+#endif
+#endif
+
 /* Workaround for Solaris platforms missing isinf() */
 #if !defined(isinf) && (defined(USE_INTERNAL_ISINF) || defined(MISSING_ISINF))
 #define isinf(x) (!isnan(x) && isnan((x) - (x)))
